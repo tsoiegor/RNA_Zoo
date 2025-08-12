@@ -14,6 +14,7 @@ echo " FASTQ: ${FASTQ}"
 echo " OUT_BAM: ${OUT_BAM}"
 echo "alignment in progress.."
 export TMPDIR=/scratch/tsoies-DL/tmp
-srun -c ${CPU} --mem ${MEM}G -p ${NODE} --time 5-0 bowtie2 --local --mm -x ${GENOME} -U ${FASTQ} --threads ${CPU} | samtools view -b -h -Su | samtools sort > ${OUT_BAM}
+
+srun -c ${CPU} --mem ${MEM}G -p ${NODE} --time 5-0 bowtie2 --end-to-end --fast --mm -x ${GENOME} -U ${FASTQ} --threads ${CPU} | samtools view -b -h -Su | samtools sort > ${OUT_BAM}
 
 echo "DONE"
