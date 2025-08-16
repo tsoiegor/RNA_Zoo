@@ -7,13 +7,16 @@ import argparse
 import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
+from itertools import chain
+from collections import defaultdict, Counter
 
 class MixedGenomeAlignment():
-    def __init__(self, bam: str, barcode_fq_csv: str, genomes_dir: str, out_path: str):
+    def __init__(self, bam: str, barcode_fq_csv: str, genomes_dir: str, out_path: str, valid_barcodes: list):
         self.bam = bam
         self.barcode_fq_csv = barcode_fq_csv
         self.genomes_dir = genomes_dir
         self.out_path = out_path
+        self.valid_barodes = valid_barcodes
         
     def make_Name2seq_dict(self):
         print('********** make_Name2seq_dict **********', flush=True)
@@ -26,6 +29,13 @@ class MixedGenomeAlignment():
                 Name2seq_dict[read_name] = barcode
         print('[make_Name2seq_dict]: DONE')
         return Name2seq_dict
+    
+    @staticmethod
+    def is_valid(barcode, valid_barcodes):
+        if barcode in valid_barcodes:
+            return True
+        else:
+            return False
         
     @staticmethod
     def get_spBarcodeDict_keys(genomes_dir: str) -> list:
@@ -38,15 +48,18 @@ class MixedGenomeAlignment():
     def chrName2spName(chrName: str) -> str:
         return "_".join(chrName.split('_')[0:2])
     
+    
     def make_SpBarcodeDict(self):
-        SpBarcodeDict = {}
+        '''SpBarcodeDict = {}
         keys = self.get_spBarcodeDict_keys(self.genomes_dir)
         for key in keys:
             SpBarcodeDict[key] = []
         print(f'Initialized: {SpBarcodeDict}', flush=True)
-        print('[make_SpBarcodeDict]: SpBarcodeDict initialized...', flush=True)
+        print('[make_SpBarcodeDict]: SpBarcodeDict initialized...', flush=True)'''
         bam = pysam.AlignmentFile(self.bam, 'rb', threads=10)
+        print('[make_SpBarcodeDict]: Bam file opened...', flush=True)
         Name2seq = self.make_Name2seq_dict()
+        counter = defaultdict(Counter)
         print('[make_SpBarcodeDict]: starting iterations over bam file...', flush=True)
         total_reads = bam.mapped + bam.unmapped 
         assert type(total_reads) == int
@@ -54,9 +67,12 @@ class MixedGenomeAlignment():
         try:
             for align in tqdm(bam.fetch(), total=total_reads):
                 try:
-                    sp_name = self.chrName2spName(bam.get_reference_name(align.reference_id))
-                    barcode = Name2seq[align.query_name.replace('/2', '/1')]
-                    SpBarcodeDict[sp_name].append(barcode)
+                    barcode = Name2seq[align.query_name.replace('/2', '/1')][0:20]
+                    if self.is_valid(barcode, self.valid_barodes):
+                        sp_name = self.chrName2spName(bam.get_reference_name(align.reference_id))
+                        counter[sp_name][barcode] += 1
+                    else:
+                        continue
                 except:
                     print(f'ERROR: refID:{align.reference_id} -> ref:{bam.get_reference_name(align.reference_id)}', flush=True)
                     print(f'queryName: {align.query_name}', flush=True)
@@ -70,29 +86,28 @@ class MixedGenomeAlignment():
             print('[make_SpBarcodeDict]: bam file closed', flush=True)
         
         print(f'[make_SpBarcodeDict]: DONE, error_count: {errors}', flush=True)
-        return SpBarcodeDict
+        return counter
             
     def calculate_distribution(self):
-        SpBarcodeDict = self.make_SpBarcodeDict()
+        sp_counter = self.make_SpBarcodeDict()
         print('[calculate_distribution]: SpBarcodeDict loaded...', flush=True)
-        barcode_list = np.unique([barcode for species_barcodes in SpBarcodeDict.values() for barcode in species_barcodes])
-        print('[calculate_distribution]: barcode_list loaded...', flush=True)
-        M_Statistics_list = []
-        print('[calculate_distribution]: starting iterations over barcode list...', flush=True)
-        for barcode in tqdm(barcode_list):
-            count_list = []
-            for key in SpBarcodeDict.keys():
-                count = SpBarcodeDict[key].count(barcode)
-                count_list.append(count)
-            M_Statistics_list.append(max(count_list)/sum(count_list))
+        M_stats = []
+        for barcode in tqdm(set(chain.from_iterable(sp_counter.values()))):
+            counts = [c[barcode] for c in sp_counter.values() if barcode in c.keys()]
+            total = sum(counts)
+            if total == 0: continue
+            M_stats.append(max(counts) / total)
         print('[calculate_distribution]: DONE', flush=True)
-        return M_Statistics_list
-    
+        return M_stats
+
     def Visualize(self):
         M_Statistics_list = self.calculate_distribution()
         print('[Visualize]: M_Statistics_list loaded...', flush=True)
-        sns.displot(M_Statistics_list, kde=True, x = 'M_statistics')
+        M_stats_df = pd.DataFrame({'M_statistics': M_Statistics_list})
+        M_stats_df.to_csv(os.path.join(self.out_path, 'M_stats_df.csv'))
+        sns.displot(data=M_stats_df, kind='hist', kde=True, x = 'M_statistics')
         plt.savefig(os.path.join(self.out_path, "M_Statistics_distribution.png"), dpi=600, bbox_inches='tight', format='png')
+        print('[Visualize]: DONE', flush=True)
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='MixedGenomeAlignment')
@@ -100,6 +115,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--barcode_fq_csv')
     parser.add_argument('-g', '--genomes_dir')
     parser.add_argument('-o', '--out_path')
+    parser.add_argument('-v', '--valid_barcodes')
     
     args = parser.parse_args()
     
@@ -108,6 +124,11 @@ if __name__ == '__main__':
     assert os.path.isfile(args.bam)
     assert os.path.exists(args.out_path)
     assert os.path.isfile(args.barcode_fq_csv)
+    assert os.path.isfile(args.valid_barcodes)
     print('CHECK: arguments are valid', flush=True)
     
-    MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path).Visualize()
+    print('[VALID BARCODES]: Processing provided valid barcodes into python list...', flush=True)
+    valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].to_list()
+    print('[VALID BARCODES]: DONE', flush=True)
+
+    MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).Visualize()
