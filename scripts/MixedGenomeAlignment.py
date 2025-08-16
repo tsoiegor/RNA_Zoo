@@ -16,7 +16,7 @@ class MixedGenomeAlignment():
         self.barcode_fq_csv = barcode_fq_csv
         self.genomes_dir = genomes_dir
         self.out_path = out_path
-        self.valid_barodes = valid_barcodes
+        self.valid_barcodes = valid_barcodes
         
     def make_Name2seq_dict(self):
         print('********** make_Name2seq_dict **********', flush=True)
@@ -29,13 +29,6 @@ class MixedGenomeAlignment():
                 Name2seq_dict[read_name] = barcode
         print('[make_Name2seq_dict]: DONE')
         return Name2seq_dict
-    
-    @staticmethod
-    def is_valid(barcode, valid_barcodes):
-        if barcode in valid_barcodes:
-            return True
-        else:
-            return False
         
     @staticmethod
     def get_spBarcodeDict_keys(genomes_dir: str) -> list:
@@ -68,7 +61,7 @@ class MixedGenomeAlignment():
             for align in tqdm(bam.fetch(), total=total_reads):
                 try:
                     barcode = Name2seq[align.query_name.replace('/2', '/1')][0:20]
-                    if self.is_valid(barcode, self.valid_barodes):
+                    if barcode in self.valid_barcodes:
                         sp_name = self.chrName2spName(bam.get_reference_name(align.reference_id))
                         counter[sp_name][barcode] += 1
                     else:
