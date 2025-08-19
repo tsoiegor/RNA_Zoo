@@ -25,7 +25,7 @@ min_count, max_count = barcode2count['count'].min(), barcode2count['count'].max(
 max_count = min(max_count, args.max_count_limit)
 step = (max_count - min_count)/N_POINTS
 reads_total = barcode2count['count'].sum()
-print(reads_total)
+
 
 reads_left_df = pd.DataFrame(columns=['count_border', 'reads_left_frac'])
 for count_step in tqdm(np.arange(min_count, max_count, step)):

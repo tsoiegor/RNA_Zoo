@@ -69,7 +69,6 @@ class MixedGenomeAlignment():
                     except:
                         print(f'ERROR: refID:{align.reference_id} -> ref:{bam.get_reference_name(align.reference_id)}', flush=True)
                         print(f'queryName: {align.query_name}', flush=True)
-                        print(f'sp name: {sp_name}, barcode: {barcode}', flush=True)
                         errors += 1
                 else:
                     continue
@@ -110,11 +109,12 @@ class MixedGenomeAlignment():
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='MixedGenomeAlignment')
-    parser.add_argument('-b', '--bam')
-    parser.add_argument('-f', '--barcode_fq_csv')
-    parser.add_argument('-g', '--genomes_dir')
-    parser.add_argument('-o', '--out_path')
-    parser.add_argument('-v', '--valid_barcodes')
+    parser.add_argument('-b', '--bam', type=str)
+    parser.add_argument('-f', '--barcode_fq_csv', type=str)
+    parser.add_argument('-g', '--genomes_dir', type=str)
+    parser.add_argument('-o', '--out_path', type=str)
+    parser.add_argument('-v', '--valid_barcodes', type=str)
+    parser.add_argument('-s', '--barcode_samples', type=int)
     
     args = parser.parse_args()
     
@@ -127,8 +127,12 @@ if __name__ == '__main__':
     print('CHECK: arguments are valid', flush=True)
     
     print('[VALID BARCODES]: Processing provided valid barcodes into python list...', flush=True)
-    SAMPLE = 1000
-    valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].sample(n=SAMPLE, random_state=42).to_list()
+    if args.barcode_samples == None:
+        valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].to_list()
+    else:
+        SAMPLE = args.barcode_sample
+        valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].sample(n=SAMPLE, random_state=42).to_list()
+    valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].to_list()
     print('[VALID BARCODES]: DONE', flush=True)
 
     MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).Visualize()
