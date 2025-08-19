@@ -10,11 +10,11 @@ parser.add_argument('-b', '--barcode_file', type=str)
 parser.add_argument('-m', '--m_stat', type=str)
 parser.add_argument('-t', '--count_thr', type=int)
 parser.add_argument('-o', '--out_path', type=str)
-parser.add_argument('-M', '--m_thr')
+parser.add_argument('-M', '--m_thr', type=float)
 
 args = parser.parse_args()
+barcodes_total = pd.read_csv(args.barcode_file, header=0, sep=',', )
 
-barcodes_total = pd.read_csv(args.barcode_file, header=0, sep=',')
 
 barcode2count = barcodes_total[barcodes_total['count']>=args.count_thr]
 assert barcode2count['count'].min() >= args.count_thr
@@ -28,22 +28,18 @@ barcode2M_stat['count'] = barcode2M_stat['barcode'].apply(lambda barcode: barcod
 print('\n*********** STATS: cell loss ***********')
 
 print(f'''Barcodes before filtration by count: {len(barcodes_total)}, \n
-Barcodes after filtration by count: {len(barcode2M_stat.query('count > @count_threshold'))}), \n
-Impact of filtration by count: {'{}%'.format(np.round(
-    len(barcode2M_stat.query('count <= @count_threshold'))/len(barcode2M_stat.query('count > @count_threshold')), 
-    2))}, \n
+Barcodes after filtration by count: {len(barcode2M_stat.query('count > @count_threshold'))}, \n
+Impact of filtration by count: {'{}%'.format(np.round(len(barcodes_total.query('count <= @count_threshold'))/len(barcodes_total)*100, 2))}, \n
 Barcodes after filtreation by count and M: {len(barcode2M_stat.query('count > @count_threshold').query('M > @M_threshold'))}, \n
-Impact of filtration by M: {'{}%'.format(np.round(
-    len(barcode2M_stat.query('count > @count_threshold').query('M <= @M_threshold'))/len(barcode2M_stat.query('count > @count_threshold').query('M > @M_threshold'))), 
-    2)}''')
+Impact of filtration by M: {'{}%'.format(np.round(len(barcode2M_stat.query('count > @count_threshold').query('M <= @M_threshold'))/len(barcode2M_stat.query('count > @count_threshold'))*100, 2))}''')
 
 print('\n*********** STATS: read loss ***********')
 print(f'''
-Reads before filtering: {barcode2M_stat['count'].to_numpy().sum()}, \n
-Reads lost after filtering by count: {barcode2M_stat.query('count<=10000')['count'].to_numpy().sum()}, \n
-Reads after filtering by count: {barcode2M_stat.query('count>10000')['count'].to_numpy().sum()}, \n
+Reads before filtering: {barcodes_total['count'].to_numpy().sum()}, \n
+Reads after filtering by count: {barcodes_total.query('count > 10000')['count'].to_numpy().sum()}, \n
+Reads lost after filtering by count: {barcodes_total.query('count <= 10000')['count'].to_numpy().sum()}, \n
 Reads lost after filtering by M: {barcode2M_stat.query('count>10000').query('M<=0.75')['count'].to_numpy().sum()}, \n
-Reads left after filtering by count and M{'{}%'.format(np.round(barcode2M_stat.query('count>10000').query('M>0.75')['count'].to_numpy().sum()/barcode2M_stat.query('count>10000')['count'].to_numpy().sum()*100, 2))} \n
+Reads left after filtering by count and M: {'{}%'.format(np.round(barcode2M_stat.query('count>10000').query('M>0.75')['count'].to_numpy().sum()/barcode2M_stat.query('count>10000')['count'].to_numpy().sum()*100, 2))}
 ''')
 print('*********** END ***********\n')
 
@@ -63,4 +59,5 @@ print('*********** DONE ***********\n')
 
 print('Saving a list of valid barcodes...')
 
-barcode2M_stat.query('count > @count_threshold').query('M > @M_threshold')['barcodes'].to_csv(os.path.join(args.out_path, 'selected_barcodes.csv'), index=None)
+
+barcode2M_stat.query('count > @count_threshold').query('M > @M_threshold')['barcode'].to_csv(os.path.join(args.out_path, 'selected_barcodes.csv'), index=None)
