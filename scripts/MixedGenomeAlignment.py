@@ -9,6 +9,10 @@ import matplotlib.pyplot as plt
 import csv
 from itertools import chain
 from collections import defaultdict, Counter
+<<<<<<< HEAD
+import sys
+=======
+>>>>>>> refs/remotes/origin/main
 
 class MixedGenomeAlignment():
     def __init__(self, bam: str, barcode_fq_csv: str, genomes_dir: str, out_path: str, valid_barcodes: list):
@@ -16,7 +20,11 @@ class MixedGenomeAlignment():
         self.barcode_fq_csv = barcode_fq_csv
         self.genomes_dir = genomes_dir
         self.out_path = out_path
+<<<<<<< HEAD
+        self.valid_barcodes = set(valid_barcodes)
+=======
         self.valid_barcodes = valid_barcodes
+>>>>>>> refs/remotes/origin/main
         
     def make_Name2seq_dict(self):
         print('********** make_Name2seq_dict **********', flush=True)
@@ -42,6 +50,37 @@ class MixedGenomeAlignment():
         return "_".join(chrName.split('_')[0:2])
     
     
+<<<<<<< HEAD
+    def BamSpDistribution(self):
+        bam = pysam.AlignmentFile(self.bam, 'rb', threads=10)
+        print('[BamSpDistribution]: Bam file opened...', flush=True)
+        print('[BamSpDistribution]: starting iterations over bam file...', flush=True)
+        errors = 0
+        counter = Counter()
+        try:
+            for align in tqdm(bam.fetch(), total=bam.mapped):
+                if align.mapping_quality >= 20:
+                    try:
+                        sp_name = self.chrName2spName(bam.get_reference_name(align.reference_id))
+                        counter[sp_name] += 1
+                    except:
+                        print(f'ERROR: refID:{align.reference_id} -> ref:{bam.get_reference_name(align.reference_id)}', flush=True)
+                        print(f'queryName: {align.query_name}', flush=True)
+                        errors += 1
+                else:
+                    continue
+        except Exception as e:
+            print(f"Error processing BAM file: {e}", flush=True)
+            raise e
+        finally:
+            bam.close()
+            print('[BamSpDistribution]: bam file closed', flush=True)
+        print(f'[BamSpDistribution]: DONE, error_count: {errors}', flush=True)
+        print(counter, flush=True)
+        return counter
+    
+    def make_SpBarcodeDict(self):
+=======
     
     def make_SpBarcodeDict(self):
         '''SpBarcodeDict = {}
@@ -50,6 +89,7 @@ class MixedGenomeAlignment():
             SpBarcodeDict[key] = []
         print(f'Initialized: {SpBarcodeDict}', flush=True)
         print('[make_SpBarcodeDict]: SpBarcodeDict initialized...', flush=True)'''
+>>>>>>> refs/remotes/origin/main
         bam = pysam.AlignmentFile(self.bam, 'rb', threads=10)
         print('[make_SpBarcodeDict]: Bam file opened...', flush=True)
         Name2seq = self.make_Name2seq_dict()
@@ -81,7 +121,23 @@ class MixedGenomeAlignment():
         
         print(f'[make_SpBarcodeDict]: DONE, error_count: {errors}', flush=True)
         return counter
+<<<<<<< HEAD
+    
+    def barcode2sp(self):
+        sp_counter = self.make_SpBarcodeDict()
+        print('[barcode2sp]: SpBarcodeDict loaded...', flush=True)
+        barcode2sp = pd.DataFrame(columns=['barcode', 'species'])
+        species = [sp for sp in sp_counter.keys()]
+        for barcode in tqdm(set(chain.from_iterable(sp_counter.values()))):
+            counts = [c[barcode] if barcode in c.keys() else 0 for c in sp_counter.values()]
+            sp = species[np.argmax(np.array(counts))]
+            barcode2sp.loc[len(barcode2sp)] = [barcode, sp]
+        barcode2sp.to_csv(os.path.join(self.out_path, 'barcode2sp.csv'))
+        print('[barcode2sp]: DONE', flush=True)
+        
+=======
             
+>>>>>>> refs/remotes/origin/main
     def calculate_distribution(self):
         sp_counter = self.make_SpBarcodeDict()
         output_df = pd.DataFrame(columns=['barcode', 'M'], index=None, )
@@ -109,6 +165,10 @@ class MixedGenomeAlignment():
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='MixedGenomeAlignment')
+<<<<<<< HEAD
+    parser.add_argument('method', type=str)
+=======
+>>>>>>> refs/remotes/origin/main
     parser.add_argument('-b', '--bam', type=str)
     parser.add_argument('-f', '--barcode_fq_csv', type=str)
     parser.add_argument('-g', '--genomes_dir', type=str)
@@ -132,7 +192,20 @@ if __name__ == '__main__':
     else:
         SAMPLE = args.barcode_sample
         valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].sample(n=SAMPLE, random_state=42).to_list()
+<<<<<<< HEAD
+    print('[VALID BARCODES]: DONE', flush=True)
+    if args.method == 'visualize':
+        MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).Visualize()
+    elif args.method == 'barcode2sp':
+        MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).barcode2sp()
+    elif args.method == 'BamSpDistribution':
+        MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).BamSpDistribution()
+    else:
+        print('ERROR: wrong positional argument')
+        sys.exit(1)
+=======
     valid_barcodes = pd.read_csv(args.valid_barcodes, names=['barcodes'])['barcodes'].to_list()
     print('[VALID BARCODES]: DONE', flush=True)
 
     MixedGenomeAlignment(args.bam, args.barcode_fq_csv, args.genomes_dir, args.out_path, valid_barcodes).Visualize()
+>>>>>>> refs/remotes/origin/main
