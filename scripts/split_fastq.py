@@ -55,12 +55,13 @@ class splitFastq():
         barcode2sp = pd.read_csv(self.barcode2sp)
         sp2barcodes = barcode2sp.groupby(by='species').agg(lambda x: ','.join(x).split(',')).reset_index()
         sp2barcodes.apply(write_barcode_lists, axis=1)
+        return sp2barcodes
     
     def sp2barcodes_to_sp2readNames(self) -> pd.DataFrame:
         barcode2readName_dict = self.make_barcode2readName_dict()
         sp2barcodes = self.make_sp2barcodes()
         p = Pool(self.processes)
-        sp2barcodes['barcode'] = p.map(self.barcodes2readnames(), sp2barcodes['barcode'])
+        sp2barcodes['barcode'] = p.map(self.barcodes2readnames(barcode2readName_dict=barcode2readName_dict), sp2barcodes['barcode'])
         return sp2barcodes
     
     def writeFastq(self):
@@ -74,7 +75,7 @@ class splitFastq():
                         outfastq.write(f"{record.seq}\n")
                         outfastq.write("+\n")
                         outfastq.write(f"{record.letter_annotations['phred_quality']}\n")
-        sp2readNames = self.sp2barcodes_to_sp2readNames(self)
+        sp2readNames = self.sp2barcodes_to_sp2readNames()
         p = Pool(self.processes)
         p.map(lambda df: df.apply(make_fastq, axis=1), sp2readNames)
         print('DONE', flush=True)
