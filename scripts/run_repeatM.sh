@@ -1,0 +1,19 @@
+#!/bin/bash
+
+T=95
+GENOME=$1
+DB=$2
+RM_out=$3
+TMP=/scratch/tsoies-DL/tmp
+mkdir $(dirname ${DB})
+mkdir ${RM_out}
+
+echo "decompressing genome..."
+
+zcat ${GENOME} > ${TMP}/$(basename -s .fna.gz ${GENOME}).fasta
+GENOME=${TMP}/$(basename -s .fna.gz ${GENOME}).fasta
+echo "decompressing finished"
+
+srun -c ${T} --mem 1000G -p amd_1Tb --time 30-0 BuildDatabase -name ${DB} ${GENOME}
+srun -c ${T} --mem 1000G -p amd_1Tb --time 30-0 RepeatModeler -database ${DB} -pa ${T}
+srun -c ${T} --mem 1000G -p amd_1Tb --time 30-0 RepeatMasker -dir ${RM_out} -pa ${T} -lib ${DB}-families.fa -xsmall ${GENOME}

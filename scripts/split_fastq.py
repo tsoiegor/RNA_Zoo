@@ -1,16 +1,11 @@
 import pandas as pd
 import numpy as np
 import os
-import pysam
 from tqdm import tqdm
 import argparse
 import seaborn as sns
-import matplotlib.pyplot as plt
 import csv
-from itertools import chain
 from collections import defaultdict, Counter
-from multiprocessing import Pool
-import sys
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
