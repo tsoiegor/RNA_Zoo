@@ -1,0 +1,209 @@
+STAR version=2.7.2b
+##### Command Line:
+/beegfs/scratch/ws/ws1/tsoies-DL/dnbc4tools2.1.3/lib/python/dnbc4tools/software/scStar --runMode genomeGenerate --runThreadN 90 --genomeDir /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome --genomeFastaFiles /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta --sjdbGTFfile /scratch/tsoies-DL/annotations/Carassius_gibelio.gtf --sjdbOverhang 99 --limitGenomeGenerateRAM 125000000000 --genomeSAindexNbases 14 --genomeChrBinNbits 18
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+runMode                       genomeGenerate     ~RE-DEFINED
+runThreadN                    90     ~RE-DEFINED
+genomeDir                     /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome     ~RE-DEFINED
+genomeFastaFiles              /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta        ~RE-DEFINED
+sjdbGTFfile                   /scratch/tsoies-DL/annotations/Carassius_gibelio.gtf     ~RE-DEFINED
+sjdbOverhang                  99     ~RE-DEFINED
+limitGenomeGenerateRAM        125000000000     ~RE-DEFINED
+genomeSAindexNbases           14     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           genomeGenerate
+runThreadN                        90
+genomeDir                         /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome
+genomeFastaFiles                  /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta   
+genomeSAindexNbases               14
+genomeChrBinNbits                 18
+limitGenomeGenerateRAM            125000000000
+sjdbGTFfile                       /scratch/tsoies-DL/annotations/Carassius_gibelio.gtf
+sjdbOverhang                      99
+
+-------------------------------
+##### Final effective command line:
+/beegfs/scratch/ws/ws1/tsoies-DL/dnbc4tools2.1.3/lib/python/dnbc4tools/software/scStar   --runMode genomeGenerate   --runThreadN 90   --genomeDir /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome   --genomeFastaFiles /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta      --genomeSAindexNbases 14   --genomeChrBinNbits 18   --limitGenomeGenerateRAM 125000000000   --sjdbGTFfile /scratch/tsoies-DL/annotations/Carassius_gibelio.gtf   --sjdbOverhang 99
+----------------------------------------
+
+Finished loading and checking parameters
+Oct 14 16:27:53 ... starting to generate Genome files
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 0  "NC_068371.1" chrStart: 0
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 1  "NC_068372.1" chrStart: 39321600
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 2  "NC_068373.1" chrStart: 71041024
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 3  "NC_068374.1" chrStart: 105381888
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 4  "NC_068375.1" chrStart: 142082048
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 5  "NC_068376.1" chrStart: 182190080
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 6  "NC_068377.1" chrStart: 214171648
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 7  "NC_068378.1" chrStart: 256901120
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 8  "NC_068379.1" chrStart: 285736960
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 9  "NC_068380.1" chrStart: 316932096
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 10  "NC_068381.1" chrStart: 344457216
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 11  "NC_068382.1" chrStart: 371458048
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 12  "NC_068383.1" chrStart: 397410304
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 13  "NC_068384.1" chrStart: 427294720
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 14  "NC_068385.1" chrStart: 453509120
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 15  "NC_068386.1" chrStart: 480247808
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 16  "NC_068387.1" chrStart: 512229376
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 17  "NC_068388.1" chrStart: 539754496
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 18  "NC_068389.1" chrStart: 570687488
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 19  "NC_068390.1" chrStart: 601620480
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 20  "NC_068391.1" chrStart: 630718464
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 21  "NC_068392.1" chrStart: 656408576
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 22  "NC_068393.1" chrStart: 682885120
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 23  "NC_068394.1" chrStart: 709099520
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 24  "NC_068395.1" chrStart: 734527488
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 25  "NC_068396.1" chrStart: 755236864
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 26  "NC_068397.1" chrStart: 792461312
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 27  "NC_068398.1" chrStart: 824967168
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 28  "NC_068399.1" chrStart: 880541696
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 29  "NC_068400.1" chrStart: 909115392
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 30  "NC_068401.1" chrStart: 952631296
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 31  "NC_068402.1" chrStart: 983040000
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 32  "NC_068403.1" chrStart: 1025245184
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 33  "NC_068404.1" chrStart: 1057226752
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 34  "NC_068405.1" chrStart: 1090519040
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 35  "NC_068406.1" chrStart: 1117257728
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 36  "NC_068407.1" chrStart: 1143734272
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 37  "NC_068408.1" chrStart: 1171259392
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 38  "NC_068409.1" chrStart: 1201930240
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 39  "NC_068410.1" chrStart: 1231552512
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 40  "NC_068411.1" chrStart: 1261174784
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 41  "NC_068412.1" chrStart: 1293680640
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 42  "NC_068413.1" chrStart: 1323302912
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 43  "NC_068414.1" chrStart: 1355808768
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 44  "NC_068415.1" chrStart: 1393295360
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 45  "NC_068416.1" chrStart: 1422655488
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 46  "NC_068417.1" chrStart: 1452277760
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 47  "NC_068418.1" chrStart: 1507852288
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 48  "NC_068419.1" chrStart: 1537736704
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 49  "NC_068420.1" chrStart: 1563426816
+/scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/Carassius_gibelio.fasta : chr # 50  "NC_014177.1" chrStart: 1590427648
+Estimated genome size=1789689792   1590689792   199000000
+GstrandBit=32
+Number of SA indices: 3164110894
+Oct 14 16:28:19 ... starting to sort Suffix Array. This may take a long time...
+Number of chunks: 115;   chunks size limit: 284414456 bytes
+Oct 14 16:28:28 ... sorting Suffix Array chunks and saving them to disk...
+Writing 114183840 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_9 ; empty space on disk = 60525270532096 bytes ... done
+Writing 149538656 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_13 ; empty space on disk = 60525050331136 bytes ... done
+Writing 126962136 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_25 ; empty space on disk = 60525050331136 bytes ... done
+Writing 172601616 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_2 ; empty space on disk = 60525050331136 bytes ...Writing 115831424 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_44 ; empty space on disk = 60525050331136 bytes ... done
+ done
+Writing 146589696 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_14 ; empty space on disk = 60525050331136 bytes ... done
+Writing 132348944 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_88 ; empty space on disk = 60525050331136 bytes ... done
+Writing 131590880 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_83 ; empty space on disk = 60525050331136 bytes ...Writing 169482136 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_12 ; empty space on disk = 60525050331136 bytes ... done
+ done
+Writing 123744344 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_38 ; empty space on disk = 60524230868992 bytes ...Writing 166536232 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_5 ; empty space on disk = 60524230868992 bytes ... done
+ done
+Writing 184690872 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_1 ; empty space on disk = 60524230868992 bytes ... done
+Writing 146848392 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_40 ; empty space on disk = 60524230868992 bytes ... done
+Writing 159782984 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_17 ; empty space on disk = 60524230868992 bytes ... done
+Writing 165409928 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_76 ; empty space on disk = 60524230868992 bytes ... done
+Writing 194479584 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_11 ; empty space on disk = 60524230868992 bytes ... done
+Writing 185228856 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_10 ; empty space on disk = 60524230868992 bytes ... done
+Writing 168461736 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_32 ; empty space on disk = 60524230868992 bytes ... done
+Writing 172616880 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_57 ; empty space on disk = 60522696802304 bytes ... done
+Writing 176688216 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_27 ; empty space on disk = 60522696802304 bytes ... done
+Writing 206677536 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_7 ; empty space on disk = 60522696802304 bytes ... done
+Writing 191002776 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_24 ; empty space on disk = 60522696802304 bytes ... done
+Writing 228486704 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_84 ; empty space on disk = 60522696802304 bytes ... done
+Writing 221426600 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_21 ; empty space on disk = 60522696802304 bytes ... done
+Writing 175024136 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_37 ; empty space on disk = 60522696802304 bytes ... done
+Writing 197683344 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_33 ; empty space on disk = 60522696802304 bytes ... done
+Writing 194853136 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_31 ; empty space on disk = 60522696802304 bytes ... done
+Writing 197683800 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_80 ; empty space on disk = 60522696802304 bytes ...Writing 184702248 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_77 ; empty space on disk = 60522696802304 bytes ... done
+ done
+Writing 195400984 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_85 ; empty space on disk = 60522696802304 bytes ... done
+Writing 215576256 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_26 ; empty space on disk = 60522696802304 bytes ... done
+Writing 184241824 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_79 ; empty space on disk = 60522696802304 bytes ... done
+Writing 209044880 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_52 ; empty space on disk = 60522696802304 bytes ... done
+Writing 182257280 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_54 ; empty space on disk = 60522696802304 bytes ... done
+Writing 248762176 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_19 ; empty space on disk = 60522696802304 bytes ... done
+Writing 185222920 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_56 ; empty space on disk = 60522696802304 bytes ... done
+Writing 238439040 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_6 ; empty space on disk = 60522696802304 bytes ... done
+Writing 233133592 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_8 ; empty space on disk = 60522696802304 bytes ... done
+Writing 202269352 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_72 ; empty space on disk = 60522696802304 bytes ... done
+Writing 234044448 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_23 ; empty space on disk = 60522696802304 bytes ... done
+Writing 203017680 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_36 ; empty space on disk = 60522696802304 bytes ... done
+Writing 213568320 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_81 ; empty space on disk = 60517763252224 bytes ...Writing 246489952 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_75 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 233137464 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_86 ; empty space on disk = 60517763252224 bytes ...Writing 244400920 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_20 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 211321536 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_59 ; empty space on disk = 60517763252224 bytes ... done
+Writing 214380360 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_63 ; empty space on disk = 60517763252224 bytes ... done
+Writing 215287432 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_43 ; empty space on disk = 60517763252224 bytes ...Writing 240270680 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_29 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 264757800 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_28 ; empty space on disk = 60517763252224 bytes ... done
+Writing 215249224 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_42 ; empty space on disk = 60517763252224 bytes ... done
+Writing 250598168 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_87 ; empty space on disk = 60517763252224 bytes ... done
+Writing 251396048 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_22 ; empty space on disk = 60517763252224 bytes ...Writing 238516640 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_34 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 231015312 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_48 ; empty space on disk = 60517763252224 bytes ... done
+Writing 260186808 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_15 ; empty space on disk = 60517763252224 bytes ... done
+Writing 252413720 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_39 ; empty space on disk = 60517763252224 bytes ... done
+Writing 280516960 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_4 ; empty space on disk = 60517763252224 bytes ... done
+Writing 240163416 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_65 ; empty space on disk = 60517763252224 bytes ...Writing 256330208 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_18 ; empty space on disk = 60517763252224 bytes ... done
+Writing 265301344 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_78 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 219920712 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_66 ; empty space on disk = 60517763252224 bytes ...Writing 223149360 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_62 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 264285352 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_60 ; empty space on disk = 60517763252224 bytes ... done
+Writing 283295864 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_68 ; empty space on disk = 60517763252224 bytes ... done
+Writing 243766296 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_46 ; empty space on disk = 60517763252224 bytes ... done
+Writing 233881936 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_55 ; empty space on disk = 60517763252224 bytes ...Writing 269721096 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_47 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 264285352 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_73 ; empty space on disk = 60517763252224 bytes ... done
+Writing 245947544 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_41 ; empty space on disk = 60517763252224 bytes ... done
+Writing 235986304 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_70 ; empty space on disk = 60517763252224 bytes ... done
+Writing 290822360 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_3 ; empty space on disk = 60517763252224 bytes ...Writing 245544824 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_82 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 258869984 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_58 ; empty space on disk = 60517763252224 bytes ...Writing 255995720 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_53 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 267117456 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_49 ; empty space on disk = 60517763252224 bytes ...Writing 267373808 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_64 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 259068384 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_89 ; empty space on disk = 60517763252224 bytes ...Writing 249722592 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_74 ; empty space on disk = 60517763252224 bytes ... done
+Writing 280407744 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_16 ; empty space on disk = 60517763252224 bytes ... done
+Writing 251503032 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_69 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 257884688 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_71 ; empty space on disk = 60517763252224 bytes ...Writing 256189592 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_61 ; empty space on disk = 60517763252224 bytes ... done
+ done
+Writing 261502296 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_50 ; empty space on disk = 60517763252224 bytes ... done
+Writing 265235376 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_67 ; empty space on disk = 60517763252224 bytes ... done
+Writing 273788600 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_30 ; empty space on disk = 60517763252224 bytes ... done
+Writing 290822360 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_35 ; empty space on disk = 60506664075264 bytes ... done
+Writing 277959608 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_45 ; empty space on disk = 60506664075264 bytes ... done
+Writing 278987376 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_51 ; empty space on disk = 60506664075264 bytes ... done
+Writing 424948032 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_0 ; empty space on disk = 60506664075264 bytes ... done
+Writing 17144 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_114 ; empty space on disk = 60505322422272 bytes ... done
+Writing 141773120 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_96 ; empty space on disk = 60505439338496 bytes ... done
+Writing 179809568 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_111 ; empty space on disk = 60505439338496 bytes ... done
+Writing 143421552 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_92 ; empty space on disk = 60505439338496 bytes ...Writing 144105104 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_93 ; empty space on disk = 60505439338496 bytes ... done
+ done
+Writing 182860832 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_101 ; empty space on disk = 60504741511168 bytes ... done
+Writing 203003536 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_112 ; empty space on disk = 60504741511168 bytes ... done
+Writing 190373872 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_107 ; empty space on disk = 60504741511168 bytes ... done
+Writing 189019888 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_94 ; empty space on disk = 60504741511168 bytes ... done
+Writing 201637784 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_102 ; empty space on disk = 60504741511168 bytes ... done
+Writing 206876480 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_104 ; empty space on disk = 60504741511168 bytes ... done
+Writing 205188328 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_95 ; empty space on disk = 60504741511168 bytes ... done
+Writing 239561840 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_108 ; empty space on disk = 60504741511168 bytes ... done
+Writing 265301344 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_110 ; empty space on disk = 60504741511168 bytes ...Writing 231438824 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_98 ; empty space on disk = 60504741511168 bytes ... done
+ done
+Writing 215577128 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_105 ; empty space on disk = 60502677913600 bytes ... done
+Writing 262210176 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_109 ; empty space on disk = 60502677913600 bytes ... done
+Writing 238580168 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_91 ; empty space on disk = 60502677913600 bytes ...Writing 230459184 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_99 ; empty space on disk = 60502677913600 bytes ... done
+ done
+Writing 246626952 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_97 ; empty space on disk = 60502677913600 bytes ... done
+Writing 224773360 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_103 ; empty space on disk = 60502677913600 bytes ... done
+Writing 260073864 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_90 ; empty space on disk = 60502677913600 bytes ... done
+Writing 279817648 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_106 ; empty space on disk = 60502677913600 bytes ... done
+Writing 249577400 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_100 ; empty space on disk = 60502677913600 bytes ... done
+Writing 424948032 bytes into /scratch/tsoies-DL/Output_DNBelab/Carassius_gibelio/genome/SA_113 ; empty space on disk = 60500560838656 bytes ... done
+Oct 14 16:31:29 ... loading chunks from disk, packing SA...
+Oct 14 16:32:37 ... finished generating suffix array
+Oct 14 16:32:37 ... generating Suffix Array index
