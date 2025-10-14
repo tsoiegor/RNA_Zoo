@@ -3,10 +3,20 @@ import numpy as np
 from tqdm import tqdm
 import csv
 import argparse
+
+def modifications_needed(annotation_path: str):
+    annotation = pd.read_csv(annotation_path, sep='\t', names=['scaffold', 'produced_by', 'feature_type', 'start', 'end', 'dot', 'strand', 'frame', 'desc'], comment='#')
+    genes= annotation[annotation['feature_type'] == 'gene']
+    if genes.desc.apply(lambda x: "biotype" in x).sum().item() == len(genes):
+        return False
+    else:
+        return True
+
+
 class process_annotation():
     def __init__(self, annotation_path, add_type=True):
         self.annotation_path = annotation_path
-        self.annotation = pd.read_csv(self.annotation_path, sep='\t', names=['scaffold', 'produced_by', 'feature_type', 'start', 'end', 'dot', 'strand', 'frame', 'desc'])
+        self.annotation = pd.read_csv(self.annotation_path, sep='\t', names=['scaffold', 'produced_by', 'feature_type', 'start', 'end', 'dot', 'strand', 'frame', 'desc'], comment='#')
         self.add_type= add_type
     def desc2fullDesc(self):
         desc2fullDescDict = {}
@@ -31,5 +41,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--ingtf')
     parser.add_argument('-o', '--outgtf')
     args = parser.parse_args()
-    outgtf = process_annotation(args.ingtf).process_description()
-    outgtf.to_csv(args.outgtf, index=False, sep='\t', header=False, quoting=csv.QUOTE_NONE)
+    if modifications_needed(args.ingtf):
+        outgtf = process_annotation(args.ingtf).process_description()
+        outgtf.to_csv(args.outgtf, index=False, sep='\t', header=False, quoting=csv.QUOTE_NONE)
+    else:
+        os.symlink(args.ingtf, args.outgtf)
