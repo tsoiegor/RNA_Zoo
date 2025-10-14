@@ -1,4 +1,4 @@
-/scratch/tsoies-DL/RNA_Zoo/scripts#!/bin/bash
+#!/bin/bash
 
 ##### SLURM PARAMS #####
 CPU=90
@@ -8,13 +8,15 @@ TIME="30-0"
 
 ##### RUN PARAMS #####
 exec_path=/scratch/tsoies-DL/dnbc4tools2.1.3
-export PATH=$PATH:${exec_path}/external/conda/bin:${exec_path}/lib/python/dnbc4tools:${exec_path}/lib/python/dnbc4tools/rna
 fastqDIR=/scratch/tsoies-DL/final_fastq
 TMP=/scratch/tsoies-DL/tmp
-export TMPDIR=${TMP}
 genomeDIR=/datasets/tsoies-DL/genomes
 oligoDIR=/datasets/tsoies-DL/chaika_data/single_cell_1A_ologo
 OUT_DIR=/scratch/tsoies-DL/Output_DNBelab
+
+##### CONFIGURING ENVIRONMENT #####
+#export PATH=$PATH:${exec_path}/external/conda/bin:${exec_path}/lib/python/dnbc4tools:${exec_path}/lib/python/dnbc4tools/rna
+export TMPDIR=${TMP}
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${exec_path}/external/conda/lib
 
 for genome_annotation in /scratch/tsoies-DL/annotations/*gtf; do
@@ -32,10 +34,10 @@ uncompressed_genome=${OUT_DIR}/${sp_name}/genome/${sp_name}.fasta
 zcat ${genome} > ${uncompressed_genome}
 
 ### processing gtf ###
-#srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools tools mkgtf --ingtf ${genome_annotation} --output ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf
+srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools tools mkgtf --ingtf ${genome_annotation} --output ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf
 
 ### STAR genome ###
-srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools rna mkref --genomeDir ${OUT_DIR}/${sp_name}/genome --ingtf ${genome_annotation} --fasta ${uncompressed_genome} --threads ${CPU} --species ${sp_name}
+srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools rna mkref --genomeDir ${OUT_DIR}/${sp_name}/genome --ingtf ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf --fasta ${uncompressed_genome} --threads ${CPU} --species ${sp_name}
 
 #srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} STAR --runThreadN ${CPU} --runMode genomeGenerate --genomeDir ${OUT_DIR}/${sp_name}/genome --genomeFastaFiles ${uncompressed_genome} --sjdbGTFfile ${genome_annotation}
 
