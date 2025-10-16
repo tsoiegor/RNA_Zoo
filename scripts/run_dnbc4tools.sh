@@ -33,11 +33,14 @@ mkdir ${OUT_DIR}/${sp_name}/genome
 uncompressed_genome=${OUT_DIR}/${sp_name}/genome/${sp_name}.fasta
 zcat ${genome} > ${uncompressed_genome}
 
+### preprocessing gtf ###
+srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} python /scratch/tsoies-DL/RNA_Zoo/scripts/process_gtf.py -i ${genome_annotation} -o ${OUT_DIR}/${sp_name}/${sp_name}.gtf
+
 ### processing gtf ###
-srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools tools mkgtf --ingtf ${genome_annotation} --output ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf
+srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools tools mkgtf --ingtf ${OUT_DIR}/${sp_name}/${sp_name}.gtf --output ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf
 
 ### STAR genome ###
-srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools rna mkref --genomeDir ${OUT_DIR}/${sp_name}/genome --ingtf ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf --fasta ${uncompressed_genome} --threads ${CPU} --species ${sp_name}
+srun -c 10 --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools rna mkref --genomeDir ${OUT_DIR}/${sp_name}/genome --ingtf ${OUT_DIR}/${sp_name}/${sp_name}_filtered.gtf --fasta ${uncompressed_genome} --threads 10 --species ${sp_name}
 
 #srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} STAR --runThreadN ${CPU} --runMode genomeGenerate --genomeDir ${OUT_DIR}/${sp_name}/genome --genomeFastaFiles ${uncompressed_genome} --sjdbGTFfile ${genome_annotation}
 
@@ -49,6 +52,6 @@ srun -c ${CPU} --mem ${MEM} --time ${TIME} -p ${P} ${exec_path}/dnbc4tools rna r
     --oligofastq1 $(ls -m ${oligoDIR}/*1.fq.gz | sed -e 's/, /,/g' | tr -d '\n') \
     --oligofastq2 $(ls -m ${oligoDIR}/*2.fq.gz | sed -e 's/, /,/g' | tr -d '\n') \
     --genomeDir  ${OUT_DIR}/${sp_name}/genome \
-    --name ${sp_name} --threads ${CPU} \
+    --name ${sp_name} --threads 10 \
     --outdir ${OUT_DIR}/${sp_name}
 done

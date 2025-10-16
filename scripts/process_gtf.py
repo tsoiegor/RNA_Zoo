@@ -3,6 +3,7 @@ import numpy as np
 from tqdm import tqdm
 import csv
 import argparse
+import os
 
 def modifications_needed(annotation_path: str):
     annotation = pd.read_csv(annotation_path, sep='\t', names=['scaffold', 'produced_by', 'feature_type', 'start', 'end', 'dot', 'strand', 'frame', 'desc'], comment='#')
