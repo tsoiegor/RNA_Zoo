@@ -1,0 +1,3 @@
+[submodule "scripts/scripts/lowM_analysisCPP/libs/bamtools"]
+	path = scripts/scripts/lowM_analysisCPP/libs/bamtools
+	url = https://github.com/pezmaster31/bamtools.git
